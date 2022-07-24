@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Suspense } from "react";
+import { Spinner } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import User from "./components/pages/User/User";
+import Home from "./components/pages/Home/Home";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<Spinner />}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/user/:login" element={<User />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
